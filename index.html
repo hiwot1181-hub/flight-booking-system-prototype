@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ethiopian Airlines Booking</title>
+
+ 
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- Brand -->
+    <div class="brand">
+      <div class="logo">ET</div>
+      <div>
+        <h1>Ethiopian Airlines Booking</h1>
+        <div class="muted">Enjoy Your Flight!</div>
+      </div>
+    </div>
+
+    <!-- Booking card -->
+    <div class="card">
+      <h2 class="card-title">Search flights</h2>
+
+      <!-- Trip type -->
+      <div class="trip-toggle">
+        <button class="seg-btn active" data-trip="round">Round trip</button>
+        <button class="seg-btn" data-trip="oneway">One way</button>
+        <button class="seg-btn" data-trip="multicity">Multi-city</button>
+      </div>
+
+      <form id="searchForm" class="search-form" method="POST" action="book.php" >
+
+        <div class="grid">
+
+          <div class="col-6">
+            <label>From</label>
+            <input type="text" name="from_city" placeholder="Addis Ababa (ADD)" required>
+          </div>
+
+          <div class="col-6">
+            <label>To</label>
+            <input type="text" name="to_city" placeholder="Dubai (DXB)" required>
+          </div>
+
+          <div class="col-4">
+            <label>Departure</label>
+            <input type="date" name="depart_date" required>
+          </div>
+
+          <div class="col-4" id="return-col">
+            <label>Return</label>
+            <input type="date" name="return_date">
+          </div>
+
+          <br>
+
+          <div class="col-4">
+            <label>Class</label>
+            <select name="travel_class">
+              <option>Economy</option>
+              <option selected>Business</option>
+              <option>First Class</option>
+            </select>
+          </div>
+
+          <br>
+
+          <!-- Passengers -->
+          <div class="col-6">
+            <label>Passengers</label>
+
+            <div class="passenger-control">
+              <div>
+                
+                <span>Adults</span>
+                <button type="button" class="p-btn" onclick="change('adt',-1)">−</button>
+                <input id="adt" name="adults" value="1" readonly>
+                <button type="button" class="p-btn" onclick="change('adt',1)">+</button>
+              </div>
+
+              <div>
+                <span>Children</span>
+                <button type="button" class="p-btn" onclick="change('chd',-1)">−</button>
+                <input id="chd" name="children" value="0" readonly>
+                <button type="button" class="p-btn" onclick="change('chd',1)">+</button>
+              </div>
+
+              <div>
+                <span>Infants</span>
+                <button type="button" class="p-btn" onclick="change('inf',-1)">−</button>
+                <input id="inf" name="infants" value="0" readonly>
+                <button type="button" class="p-btn" onclick="change('inf',1)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="col-6">
+            <label>Promo code</label>
+            <input type="text" name="promo_code" placeholder="Optional">
+          </div>
+
+          <div class="col-12">
+            <label>
+              <input type="checkbox" name="flexible_dates" > Flexible dates (±3 days)
+            </label>
+          </div>
+
+          <div class="col-12 actions">
+            <button class="btn-primary">Search flights</button>
+            <button type="reset" class="btn-ghost">Reset</button>
+          </div>
+
+        </div>
+      </form>
+
+      <div id="formMessage" class="muted"></div>
+    </div>
+
+    <!-- Results -->
+    <div id="resultsCard" class="card" style="display:none">
+      <h3>Flight results</h3>
+      <div id="results"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
